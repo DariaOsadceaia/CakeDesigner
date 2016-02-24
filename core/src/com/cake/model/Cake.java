@@ -1,20 +1,37 @@
 package com.cake.model;
 
-import com.badlogic.gdx.utils.Array;
-
 /**
  * Created by Gerika on 21.02.2016.
  */
 public class Cake {
 
 
-    Array<CakeBase> cakebases;
+  CakeBase cakeBase;
+  CakeCream cakeCream;
 
+    public Cake(CakeBase b,CakeCream c){
+        cakeBase = b;
+        cakeCream = c;
 
-    public Cake(){
-        cakebases = new Array();
 
     }
 
+    public CakeBase getCakeBase(){
+        return cakeBase;
+
+    }
+    public CakeCream getCakeCream(){
+        return cakeCream;
+    }
+
+    public void setCakeBase(CakeBase c){
+
+        cakeBase = c;
+    }
+
+    public void setCakeCream(CakeCream c){
+
+        cakeCream = c;
+    }
 
 }

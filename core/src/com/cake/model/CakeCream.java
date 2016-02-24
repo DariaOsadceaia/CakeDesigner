@@ -4,18 +4,22 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
- * Created by Gerika on 21.02.2016.
+ * Created by Gerika on 24.02.2016.
  */
-public class CakeBase {
-
-
-    Texture image;
-    Rectangle position;
-    String name;
+public class CakeCream {
 
 
 
-    public CakeBase(Texture t,String n){
+        Texture image;
+        Rectangle position;
+        String name;
+
+
+
+
+
+
+    public CakeCream(Texture t,String n){
 
         image = t;
 
@@ -24,12 +28,14 @@ public class CakeBase {
         position.x = 800 / 2 - 400 / 2; // center the bucket horizontally
         position.y = 400 / 2 - 250 / 2; // bottom left corner of the bucket is 20 pixels above
         // the bottom screen edge
-       // basePosition.width = 64;
-       // basePosition.height = 64;
+        // basePosition.width = 64;
+        // basePosition.height = 64;
 
         name = n;
 
     }
+
+
 
     public Texture getImage(){
 
@@ -60,9 +66,10 @@ public class CakeBase {
 
 
     public void dispose(){
-            image.dispose();
+        image.dispose();
 
 
     }
 
 }
+
