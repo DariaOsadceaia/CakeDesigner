@@ -4,23 +4,18 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
- * Created by Gerika on 24.02.2016.
+ * Created by Gerika on 25.02.2016.
  */
-public class CakeCream {
+public class Extra {
+
+    Texture image;
+    Rectangle position;
+    String name;
+    float cost;
 
 
 
-        Texture image;
-        Rectangle position;
-        String name;
-        float cost;
-
-
-
-
-
-
-    public CakeCream(Texture t,String n,float c){
+    public Extra(Texture t,String n,float c){
 
         image = t;
         cost = c;
@@ -36,8 +31,6 @@ public class CakeCream {
         name = n;
 
     }
-
-
 
     public Texture getImage(){
 
@@ -66,7 +59,6 @@ public class CakeCream {
 
     }
 
-
     public void setCost(float c){
 
         cost = c;
@@ -85,4 +77,7 @@ public class CakeCream {
     }
 
 }
+
+
+
 

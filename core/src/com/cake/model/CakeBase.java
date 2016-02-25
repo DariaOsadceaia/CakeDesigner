@@ -12,12 +12,14 @@ public class CakeBase {
     Texture image;
     Rectangle position;
     String name;
+    float cost;
 
 
 
-    public CakeBase(Texture t,String n){
+    public CakeBase(Texture t,String n,float c){
 
         image = t;
+        cost = c;
 
         // create a Rectangle to logically represent the bucket
         position = new Rectangle();
@@ -56,6 +58,16 @@ public class CakeBase {
     public void setName(String n){
         name = n;
 
+    }
+
+    public void setCost(float c){
+
+        cost = c;
+    }
+
+    public float getCost(){
+
+        return cost;
     }
 
 

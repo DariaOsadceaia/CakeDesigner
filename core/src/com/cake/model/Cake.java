@@ -8,11 +8,17 @@ public class Cake {
 
   CakeBase cakeBase;
   CakeCream cakeCream;
+  Extra extra;
+  float cost;
 
-    public Cake(CakeBase b,CakeCream c){
+
+
+
+
+    public Cake(CakeBase b,CakeCream c,Extra e){
         cakeBase = b;
         cakeCream = c;
-
+        extra = e;
 
     }
 
@@ -32,6 +38,28 @@ public class Cake {
     public void setCakeCream(CakeCream c){
 
         cakeCream = c;
+    }
+    public Extra getExtra(){
+        return extra;
+
+    }
+    public void setExtra(Extra e){
+        extra = e;
+    }
+
+    public void setCost(float c){
+
+        cost = c;
+    }
+
+    public float getCost(){
+
+        return cost;
+    }
+
+    public float calculate(){
+
+        return cakeBase.getCost()+cakeCream.getCost()+extra.getCost();
     }
 
 }
