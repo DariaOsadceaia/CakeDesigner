@@ -1,4 +1,4 @@
-package com.cake.model;
+package com.cake.components;
 
 /**
  * Created by Gerika on 21.02.2016.
