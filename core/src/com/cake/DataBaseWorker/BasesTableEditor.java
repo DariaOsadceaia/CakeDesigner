@@ -1,13 +1,21 @@
 package com.cake.DataBaseWorker;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.Array;
+import com.cake.components.CakeBase;
+import com.cake.grafics.VCakeBase;
+
 import java.sql.*;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 /**
  * Created by Gerika on 19.03.2016.
  */
 public class BasesTableEditor {
 
-    static void createBaseTable(Connection conn, Statement stat) {
+    public static void createBaseTable(Connection conn, Statement stat) {
 
         try {
 
@@ -15,6 +23,10 @@ public class BasesTableEditor {
 
             stat.executeUpdate("create table bases (id,name, image,price);");
             //add new values,4 columns:id,name, image,price
+            //first - id
+            //second - name
+            //third - image
+            //forth - price
             PreparedStatement prep = conn.prepareStatement(
                     "insert into bases values (?, ?, ?, ?);");
 
@@ -69,15 +81,22 @@ public class BasesTableEditor {
     }
 
 
-    static void readBasesTable(Connection conn, Statement stat) {
+    public static Array readBasesTable(Connection conn, Statement stat) {
 
         ResultSet rs = null;
+        Array<CakeBase> bases = new Array<CakeBase>();
         try {
             //
             rs = stat.executeQuery("select * from bases;");
 
-            while (rs.next()) {
 
+            while (rs.next()) {
+                //get new values
+                //first - id
+                //second - name
+                //third - image
+                //forth - price
+                bases.add(new CakeBase(rs.getInt(1),rs.getString(2),new VCakeBase(new Texture(Gdx.files.internal(rs.getString(3)))),rs.getFloat(4)));
 
             }
             rs.close();
@@ -86,8 +105,59 @@ public class BasesTableEditor {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        return bases;
 
     }
+
+    public static void writeBasesTable(Connection conn, Statement stat,LinkedList a){
+
+        //to add new rows without deleting table
+        //first - id
+        //second - name
+        //third - image
+        //forth - price
+
+        PreparedStatement prep = null;
+        CakeBase c;
+
+        try {
+            prep = conn.prepareStatement(
+                    "insert into bases values (?, ?, ?, ?);");
+        Iterator<CakeBase> iterator= a.iterator();
+        while (iterator.hasNext()) {
+
+            c = iterator.next();
+            prep.setInt(1, c.getId());
+            prep.setString(2,c.getName());
+            prep.setString(3,c.getViewer().toString());
+            prep.setDouble(4,c.getCost());
+            prep.addBatch();
+        }
+
+
+
+        conn.setAutoCommit(false);
+        prep.executeBatch();
+        conn.setAutoCommit(true);
+        //take results in rs
+        ResultSet rs = stat.executeQuery("select * from bases;");
+        while (rs.next()) {
+            //just for watching results
+            System.out.println("name = " + rs.getString("name"));
+            System.out.println("id = " + rs.getInt("id"));
+            System.out.println("price = " + rs.getDouble("price"));
+        }
+        rs.close();
+
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+
+
+
+
+}
 }
 

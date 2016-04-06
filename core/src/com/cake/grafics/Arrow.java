@@ -1,4 +1,4 @@
-package com.cake.model;
+package com.cake.grafics;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
@@ -16,11 +16,6 @@ public class Arrow {
 
         image = t;
         position = p;
-
-
-
-
-
 
     }
 
@@ -52,3 +47,4 @@ public class Arrow {
 
 
 }
+

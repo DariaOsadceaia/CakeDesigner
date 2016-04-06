@@ -1,5 +1,10 @@
 package com.cake.DataBaseWorker;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.cake.components.Extra;
+import com.cake.grafics.VExtra;
+
 import java.sql.*;
 
 /**
@@ -7,7 +12,7 @@ import java.sql.*;
  */
 public class ExtrasTableEditor {
 
-    static void createExtrasTable(Connection conn,Statement stat){
+    public static void createExtrasTable(Connection conn,Statement stat){
 
         try {
 
@@ -56,6 +61,35 @@ public class ExtrasTableEditor {
             e.printStackTrace();
         }
 
+
+    }
+
+
+    public static com.badlogic.gdx.utils.Array readExtrasTable(Connection conn, Statement stat) {
+
+        ResultSet rs = null;
+        com.badlogic.gdx.utils.Array<Extra> extras = new com.badlogic.gdx.utils.Array<Extra>();
+        try {
+            //
+            rs = stat.executeQuery("select * from extras;");
+
+
+            while (rs.next()) {
+                //get new values
+                //first - id
+                //second - name
+                //third - image
+                //forth - price
+                extras.add(new Extra(rs.getInt(1), rs.getString(2), new VExtra(new Texture(Gdx.files.internal(rs.getString(3)))), rs.getFloat(4)));
+
+            }
+            rs.close();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return extras;
 
     }
 

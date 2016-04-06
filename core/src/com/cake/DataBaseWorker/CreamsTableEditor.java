@@ -1,5 +1,10 @@
 package com.cake.DataBaseWorker;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.cake.components.CakeCream;
+import com.cake.grafics.VCakeCream;
+
 import java.sql.*;
 
 /**
@@ -72,6 +77,35 @@ public class CreamsTableEditor {
             e.printStackTrace();
         }
 
+
+    }
+
+
+    public static com.badlogic.gdx.utils.Array readCreamsTable(Connection conn, Statement stat) {
+
+        ResultSet rs = null;
+        com.badlogic.gdx.utils.Array<CakeCream> creams = new com.badlogic.gdx.utils.Array<CakeCream>();
+        try {
+            //
+            rs = stat.executeQuery("select * from creams;");
+
+
+            while (rs.next()) {
+                //get new values
+                //first - id
+                //second - name
+                //third - image
+                //forth - price
+                creams.add(new CakeCream(rs.getInt(1), rs.getString(2), new VCakeCream(new Texture(Gdx.files.internal(rs.getString(3)))), rs.getFloat(4)));
+
+            }
+            rs.close();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return creams;
 
     }
 
