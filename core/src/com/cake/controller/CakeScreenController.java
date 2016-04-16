@@ -5,7 +5,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.cake.components.Cake;
 import com.cake.components.CakeBase;
 import com.cake.components.CakeCream;
@@ -34,9 +37,15 @@ public class CakeScreenController {
     int[] counter;
     Array<Arrow> arrows;
     float totalCost;
+    Stage stage;
+    Skin skin;
 
 
     public void create(){
+
+        skin = new Skin();
+        stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
         arrows = new Array<Arrow>();
         counter = new int[]{0,0,0};
         totalCost = 0;
