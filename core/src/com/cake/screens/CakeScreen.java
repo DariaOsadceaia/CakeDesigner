@@ -7,10 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.cake.components.Cake;
 import com.cake.components.CakeBase;
 import com.cake.components.CakeCream;
@@ -43,9 +40,8 @@ public class CakeScreen implements Screen {
     int[] counter;
     Array<Arrow> arrows;
     float totalCost;
-    Stage stage;
-    Skin skin;
-   // final SelectBox.SelectBoxStyle selectLanguage;
+
+
 
 
     public CakeScreen(CakeDemo cakeDem){
@@ -56,15 +52,7 @@ public class CakeScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
 
-      //  skin = new Skin(Gdx.files.internal("SelectBox.json"));
 
-        stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
-      //  selectLanguage = new SelectBox.SelectBoxStyle();
-//        SelectBox selectBox = new SelectBox(skin);
-      //  selectBox.setItems(new String[]{"Item 1", "Item 2", "Item 3"});
-      //  selectBox.setPosition(400,100);
-      //  stage.addActor(selectBox);
 
         //contains languages,which can choose user
 
