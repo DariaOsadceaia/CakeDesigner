@@ -2,8 +2,6 @@ package com.cake.controller;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -70,22 +68,6 @@ public class CakeScreenController {
 
 
         current = new Cake(bases.get(0),creams.get(0),extras.get(0));
-
-        //for bases
-        arrows.add(new Arrow(new Texture(Gdx.files.internal("str4.png")), new Rectangle(20, 420, 25, 35)));
-        arrows.add(new Arrow(new Texture(Gdx.files.internal("str4_1.png")), new Rectangle(310, 420, 25, 35)));
-
-        //for creams
-        arrows.add(new Arrow(new Texture(Gdx.files.internal("str4.png")), new Rectangle(20, 380, 25, 35)));
-        arrows.add(new Arrow(new Texture(Gdx.files.internal("str4_1.png")), new Rectangle(310, 380, 25, 35)));
-
-        //for extras
-        arrows.add(new Arrow(new Texture(Gdx.files.internal("str4.png")), new Rectangle(20, 340, 25, 35)));
-        arrows.add(new Arrow(new Texture(Gdx.files.internal("str4_1.png")), new Rectangle(310, 340, 25, 35)));
-
-
-
-
 
 
 

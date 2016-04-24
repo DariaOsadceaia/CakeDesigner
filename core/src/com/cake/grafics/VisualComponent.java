@@ -14,6 +14,7 @@ import static com.cake.others.Disposition.CAKE_COORDINATES_Y;
 public class VisualComponent {
     Texture image;
     Rectangle position;
+    String form;
 
 
     public VisualComponent(){

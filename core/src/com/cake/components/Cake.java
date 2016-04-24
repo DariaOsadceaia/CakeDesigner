@@ -10,9 +10,11 @@ public class Cake {
   CakeCream cakeCream;
   Extra extra;
   float cost;
-
-
-
+  boolean isTiersApart;
+  int countOfTiers;
+  //CakeForm form;
+  float weight;
+  int countOfCakes;
 
 
     public Cake(CakeBase b,CakeCream c,Extra e){
@@ -60,6 +62,47 @@ public class Cake {
     public float calculate(){
 
         return cakeBase.getCost()+cakeCream.getCost()+extra.getCost();
+    }
+
+
+    public void setTiersApart(boolean t){
+
+        isTiersApart= t;
+    }
+
+    public boolean isTiersApart(){
+
+        return isTiersApart;
+    }
+
+    public int getCountOfTiers(){
+
+        return countOfTiers;
+    }
+
+    public void setCountOfTiers(int c){
+
+        countOfTiers = c;
+    }
+
+    public void setCountOfCakes(int c){
+
+        countOfCakes = c;
+    }
+
+    public int getCountOfCakes(){
+
+        return countOfCakes;
+    }
+
+    public float getWeight(){
+
+        return weight;
+    }
+
+    public void setWeight(int w){
+        weight = w;
+
     }
 
 }

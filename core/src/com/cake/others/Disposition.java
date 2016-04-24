@@ -12,6 +12,16 @@ public class Disposition {
     public static float CAKE_COORDINATES_Y = SCREEN_HEIGHT / 2 - 250 / 2;
 
 
+    public int getCAKE_COORDINATES_XInt(){
+
+        return SCREEN_WIDTH / 2;
+    }
+
+    public int getCAKE_COORDINATES_YInt(){
+
+        return SCREEN_HEIGHT / 2;
+    }
+
 
 
 }

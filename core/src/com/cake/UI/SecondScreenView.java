@@ -8,14 +8,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 /**
  * Created by Gerika on 16.04.2016.
  */
-public class SecondScreenLabel {
+public class SecondScreenView {
 
 
     SpriteBatch batch;
     BitmapFont font;
     Skin skin;
     Stage stage;
-    Table table;
 
     Label creamLabel;
     Label extraLabel;
