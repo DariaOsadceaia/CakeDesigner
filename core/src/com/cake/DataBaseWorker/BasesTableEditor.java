@@ -32,31 +32,31 @@ public class BasesTableEditor {
 
             prep.setInt(1, 1);
             prep.setString(2, "Lemon");
-            prep.setString(3, "limobase.png");
+            prep.setString(3, "sprite/b002.png");
             prep.setDouble(4, 20.00);
             prep.addBatch();
 
             prep.setInt(1, 2);
             prep.setString(2, "Choko");
-            prep.setString(3, "chokobase.png");
+            prep.setString(3, "sprite/b003.png");
             prep.setDouble(4, 20.00);
             prep.addBatch();
 
             prep.setInt(1, 3);
             prep.setString(2, "Choko with nuts");
-            prep.setString(3, "chokobase.png");
+            prep.setString(3, "sprite/b003.png");
             prep.setDouble(4, 25.00);
             prep.addBatch();
 
             prep.setInt(1, 4);
             prep.setString(2, "Marcipan");
-            prep.setString(3, "jel.png");
+            prep.setString(3, "sprite/b002.png");
             prep.setDouble(4, 30.0f);
             prep.addBatch();
 
             prep.setInt(1, 4);
             prep.setString(2, "Orange fluid");
-            prep.setString(3, "orange.png");
+            prep.setString(3, "sprite/b002.png");
             prep.setDouble(4, 20.0f);
             prep.addBatch();
 

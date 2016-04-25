@@ -25,31 +25,26 @@ public class CreamsTableEditor {
 
             prep.setInt(1, 1);
             prep.setString(2, "Milk");
-            prep.setString(3,"milkcream.png");
+            prep.setString(3,"sprite/c001.png");
             prep.setDouble(4, 10.00);
             prep.addBatch();
+
 
             prep.setInt(1, 2);
-            prep.setString(2, "Nuts");
-            prep.setString(3,"nutscream.png");
-            prep.setDouble(4, 10.00);
-            prep.addBatch();
-
-            prep.setInt(1, 3);
-            prep.setString(2, "Choko with nuts");
-            prep.setString(3,"chokocream.png");
+            prep.setString(2, "Choko");
+            prep.setString(3,"sprite/c002.png");
             prep.setDouble(4, 15.00);
             prep.addBatch();
 
-            prep.setInt(1, 4);
+            prep.setInt(1, 3);
             prep.setString(2, "Pistachio");
-            prep.setString(3,"fis.png");
+            prep.setString(3,"sprite/c004.png");
             prep.setDouble(4, 17.0f);
             prep.addBatch();
 
             prep.setInt(1, 4);
             prep.setString(2,"Strawberry Cream");
-            prep.setString(3,"mal.png");
+            prep.setString(3,"sprite/c003.png");
             prep.setDouble(4,15.0f);
             prep.addBatch();
 

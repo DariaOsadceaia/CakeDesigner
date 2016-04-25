@@ -9,7 +9,7 @@ public class Cake {
   CakeBase cakeBase;
   CakeCream cakeCream;
   Extra extra;
-  float cost;
+
   boolean isTiersApart;
   int countOfTiers;
   //CakeForm form;
@@ -21,6 +21,9 @@ public class Cake {
         cakeBase = b;
         cakeCream = c;
         extra = e;
+        weight = 1;
+        countOfTiers = 1;
+        countOfCakes = 1;
 
     }
 
@@ -49,15 +52,9 @@ public class Cake {
         extra = e;
     }
 
-    public void setCost(float c){
 
-        cost = c;
-    }
 
-    public float getCost(){
 
-        return cost;
-    }
 
     public float calculate(){
 

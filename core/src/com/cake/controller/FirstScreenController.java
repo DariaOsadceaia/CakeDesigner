@@ -36,11 +36,6 @@ public class FirstScreenController {
     public FirstScreenController(){
 
 
-        stage = view.stage;
-        Gdx.input.setInputProcessor(stage);
-
-
-
 
         //here load data from database
         try {
@@ -61,6 +56,9 @@ public class FirstScreenController {
 
 
         view = new FirstScreenView(model.bases,model.creams,model.extras);
+
+        stage = view.stage;
+        Gdx.input.setInputProcessor(stage);
         baseSelectBoxListener = new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -76,9 +74,7 @@ public class FirstScreenController {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 //here to change image
-
-
-                //and chande current cake
+                //and change current cake
                 model.current.setCakeCream(searchCreamForName(model.creams, (String) view.creamSelectBox.getSelected()));
 
 
@@ -89,9 +85,8 @@ public class FirstScreenController {
         extraSelectBoxListener = new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                //here to change image
-
-                //and chande current cake
+                //here  changes image
+                //and changes current cake
                 model.current.setExtra(searchExtraForName(model.extras, (String) view.extrasSelectBox.getSelected()));
 
             }
@@ -115,12 +110,14 @@ public class FirstScreenController {
 
     public void control(){
 
-        Gdx.gl.glClearColor(0.9f, 0.7f, 0.6f, 0.5f);
+        Gdx.gl.glClearColor(0.85f, 0.7f, 0.6f, 0.5f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
         view.baseImage.setDrawable(view.skin.getDrawable("base" + model.current.getCakeBase().getId()));
-
+        view.creamImage.setDrawable(view.skin.getDrawable("cream" + model.current.getCakeCream().getId()));
+        view.extraImage.setDrawable(view.skin.getDrawable("extra" + model.current.getExtra().getId()));
+        view.priceLabel.setText("Price: "+model.current.calculate());
 
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
