@@ -97,7 +97,7 @@ public class Cake {
         return weight;
     }
 
-    public void setWeight(int w){
+    public void setWeight(float w){
         weight = w;
 
     }
