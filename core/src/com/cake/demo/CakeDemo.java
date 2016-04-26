@@ -5,12 +5,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.cake.screens.CakeScreen;
+import com.cake.screens.InfoScreen;
 
 public class CakeDemo extends Game {
 
 
 	public SpriteBatch batch;
 	public BitmapFont font;
+	public CakeScreen firstScreen;
+	public InfoScreen secondScreen;
 
 	@Override
 	public void create () {
@@ -18,8 +21,9 @@ public class CakeDemo extends Game {
 		batch = new SpriteBatch();
 
 		font = new BitmapFont(Gdx.files.internal("bfont.fnt"));
-
-		this.setScreen(new CakeScreen(this));
+		firstScreen = new CakeScreen(this);
+		secondScreen = new InfoScreen(this);
+		this.setScreen(firstScreen);
 
 	}
 
@@ -27,6 +31,17 @@ public class CakeDemo extends Game {
 	public void render () {
 
 		super.render();
+
+		if(firstScreen.controller.toSecondScreen){
+
+			firstScreen.controller.toSecondScreen = false;
+			this.setScreen(secondScreen);
+		}
+		if(secondScreen.controller.toprevScreen){
+
+			secondScreen.controller.toprevScreen = false;
+			this.setScreen(firstScreen);
+		}
 
 	}
 

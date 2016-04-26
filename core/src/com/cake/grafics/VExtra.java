@@ -1,6 +1,7 @@
 package com.cake.grafics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * Created by Gerika on 02.03.2016.
@@ -8,7 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 public class VExtra extends VisualComponent{
 
 
-    public VExtra(Texture t) {
+    public VExtra(Array<Texture> t) {
         super(t);
     }
 

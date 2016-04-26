@@ -4,31 +4,37 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.cake.controller.FirstScreenController;
+import com.cake.UI.SecondScreenView;
+import com.cake.controller.SecondScreenController;
 import com.cake.demo.CakeDemo;
+import com.cake.model.SecondScreenModel;
 
 /**
- * Created by Gerika on 22.02.2016.
+ * Created by Gerika on 26.04.2016.
  */
-public class CakeScreen implements Screen {
+public class InfoScreen implements Screen {
 
 
-        final CakeDemo cakeDemo;
-        OrthographicCamera camera;
+    final CakeDemo cakeDemo;
+    OrthographicCamera camera;
+    public SecondScreenController controller;
+    SecondScreenView view;
+    SecondScreenModel model;
 
-        public FirstScreenController controller;
+    public InfoScreen(CakeDemo cakeDem){
 
-    public CakeScreen(CakeDemo cakeDem){
         this.cakeDemo = cakeDem;
-
+    //    model = new SecondScreenModel();
+   //     view = new SecondScreenView();
+    //    controller = new SecondScreenController();
 
         // create the camera and the SpriteBatch
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
 
-        controller  = new FirstScreenController();
 
-
+        view = new SecondScreenView();
+        controller = new SecondScreenController();
 
     }
 
@@ -40,10 +46,7 @@ public class CakeScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        // clear the screen with a color. The
-        // arguments to glClearColor are the red, green
-        // blue and alpha component in the range [0,1]
-        // of the color to be used to clear the screen.
+
         Gdx.gl.glClearColor(0.9f, 0.7f, 0.6f, 0.5f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -53,10 +56,6 @@ public class CakeScreen implements Screen {
         // coordinate system specified by the camera.
         cakeDemo.batch.setProjectionMatrix(camera.combined);
         controller.control();
-
-
-
-
     }
 
     @Override
@@ -79,20 +78,8 @@ public class CakeScreen implements Screen {
 
     }
 
-
-
     @Override
     public void dispose() {
 
-
-
-
-
-
-
     }
 }
-
-
-
-

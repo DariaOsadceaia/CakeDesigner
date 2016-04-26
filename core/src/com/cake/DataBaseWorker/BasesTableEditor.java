@@ -21,43 +21,79 @@ public class BasesTableEditor {
 
             stat.executeUpdate("drop table if exists bases;");
 
-            stat.executeUpdate("create table bases (id,name, image,price);");
+            stat.executeUpdate("create table bases (id,name, image,price,image2,image3);");
             //add new values,4 columns:id,name, image,price
             //first - id
             //second - name
             //third - image
             //forth - price
+            //fifth - image2
+            //sexth - image3
             PreparedStatement prep = conn.prepareStatement(
-                    "insert into bases values (?, ?, ?, ?);");
+                    "insert into bases values (?, ?, ?, ?, ?, ?);");
 
             prep.setInt(1, 1);
             prep.setString(2, "Lemon");
             prep.setString(3, "sprite/b002.png");
             prep.setDouble(4, 20.00);
+            prep.setString(5, "none");
+            prep.setString(6, "none");
             prep.addBatch();
 
             prep.setInt(1, 2);
             prep.setString(2, "Choko");
-            prep.setString(3, "sprite/b003.png");
+            prep.setString(3, "sprite/b012.png");
             prep.setDouble(4, 20.00);
+            prep.setString(5, "none");
+            prep.setString(6, "none");
             prep.addBatch();
 
             prep.setInt(1, 3);
             prep.setString(2, "Choko with nuts");
-            prep.setString(3, "sprite/b003.png");
+            prep.setString(3, "sprite/b013.png");
             prep.setDouble(4, 25.00);
+            prep.setString(5, "none");
+            prep.setString(6, "none");
             prep.addBatch();
 
             prep.setInt(1, 4);
             prep.setString(2, "Marcipan");
-            prep.setString(3, "sprite/b002.png");
+            prep.setString(3, "sprite/b016.png");
             prep.setDouble(4, 30.0f);
+            prep.setString(5, "none");
+            prep.setString(6, "none");
             prep.addBatch();
 
-            prep.setInt(1, 4);
-            prep.setString(2, "Orange fluid");
-            prep.setString(3, "sprite/b002.png");
+            prep.setInt(1, 5);
+            prep.setString(2, "Napoleon");
+            prep.setString(3, "sprite/b018.png");
+            prep.setDouble(4, 17.0f);
+            prep.setString(5, "none");
+            prep.setString(6, "none");
+            prep.addBatch();
+
+            prep.setInt(1, 6);
+            prep.setString(2, "Tiramisu");
+            prep.setString(3, "sprite/b010.png");
+            prep.setDouble(4, 26.0f);
+            prep.setString(5, "none");
+            prep.setString(6, "none");
+            prep.addBatch();
+
+            prep.setInt(1, 7);
+            prep.setString(2, "American Biscuite");
+            prep.setString(3, "sprite/b020.png");
             prep.setDouble(4, 20.0f);
+            prep.setString(5, "none");
+            prep.setString(6, "none");
+            prep.addBatch();
+
+            prep.setInt(1, 8);
+            prep.setString(2, "Rosette");
+            prep.setString(3, "sprite/b022.png");
+            prep.setDouble(4, 20.0f);
+            prep.setString(5, "none");
+            prep.setString(6, "none");
             prep.addBatch();
 
             conn.setAutoCommit(false);
@@ -96,7 +132,22 @@ public class BasesTableEditor {
                 //second - name
                 //third - image
                 //forth - price
-                bases.add(new CakeBase(rs.getInt(1),rs.getString(2),new VCakeBase(new Texture(Gdx.files.internal(rs.getString(3)))),rs.getFloat(4)));
+                Array<Texture> ar = new Array<Texture>();
+
+                Texture t1 = new Texture(Gdx.files.internal(rs.getString(3)));
+                ar.add(t1);
+                if(!rs.getString(5).equals("none")&&!rs.getString(5).isEmpty()){
+                    Texture t2 = new Texture(Gdx.files.internal(rs.getString(5)));
+                    ar.add(t2);
+                }
+
+                if(!rs.getString(6).equals("none")&&!rs.getString(6).isEmpty()){
+                    Texture t3 = new Texture(Gdx.files.internal(rs.getString(6)));
+                    ar.add(t3);
+                }
+
+                //
+                bases.add(new CakeBase(rs.getInt(1), rs.getString(2), new VCakeBase(ar), rs.getFloat(4)));
 
             }
             rs.close();
@@ -128,9 +179,17 @@ public class BasesTableEditor {
 
             c = iterator.next();
             prep.setInt(1, c.getId());
-            prep.setString(2,c.getName());
-            prep.setString(3,c.getViewer().toString());
-            prep.setDouble(4,c.getCost());
+            prep.setString(2, c.getName());
+            prep.setString(3, c.getViewer().getImage().get(0).toString());
+            prep.setDouble(4, c.getCost());
+            if(c.getViewer().getImage().get(1)!=null) {
+                prep.setString(5, c.getViewer().getImage().get(1).toString());
+            }else
+                prep.setString(5, "none");
+            if(c.getViewer().getImage().get(2)!=null) {
+                prep.setString(6, c.getViewer().getImage().get(1).toString());
+            }else
+                prep.setString(6, "none");
             prep.addBatch();
         }
 

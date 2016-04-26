@@ -1,6 +1,5 @@
 package com.cake.controller;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Array;
 import com.cake.components.CakeBase;
@@ -66,7 +65,7 @@ public class ParametterLoader {
     //this is bad :(
         //need to fix
     static public CakeBase searchBaseForName(Array<CakeBase> ar,String name){
-            CakeBase c = new CakeBase(000, "none", new VCakeBase(new Texture(Gdx.files.internal("zero.png"))),00);
+            CakeBase c = new CakeBase(000, "none", new VCakeBase(new Array<Texture>()),00);
         for(int i=0;i<ar.size;i++){
 
             if(ar.get(i).getName().equals(name)){
@@ -81,7 +80,7 @@ public class ParametterLoader {
 
 
     static public CakeCream searchCreamForName(Array<CakeCream> ar,String name){
-        CakeCream c = new CakeCream(000, "none", new VCakeCream(new Texture(Gdx.files.internal("zero.png"))),00);
+        CakeCream c = new CakeCream(000, "none", new VCakeCream(new Array<Texture>()),00);
         for(int i=0;i<ar.size;i++){
 
             if(ar.get(i).getName().equals(name)){
@@ -95,7 +94,7 @@ public class ParametterLoader {
     }
 
     static public Extra searchExtraForName(Array<Extra> ar,String name){
-        Extra c = new Extra(000, "none", new VExtra(new Texture(Gdx.files.internal("zero.png"))),00);
+        Extra c = new Extra(000, "none", new VExtra(new Array<Texture>()),00);
         for(int i=0;i<ar.size;i++){
 
             if(ar.get(i).getName().equals(name)){

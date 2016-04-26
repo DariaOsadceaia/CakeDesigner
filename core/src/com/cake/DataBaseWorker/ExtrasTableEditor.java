@@ -18,27 +18,33 @@ public class ExtrasTableEditor {
 
             stat.executeUpdate("drop table if exists extras;");
 
-            stat.executeUpdate("create table extras (id,name, image,price);");
+            stat.executeUpdate("create table extras (id,name, image,price,image2,image3);");
             //add new values,4 columns:id,name, image,price
             PreparedStatement prep = conn.prepareStatement(
-                    "insert into extras values (?, ?, ?, ?);");
+                    "insert into extras values (?, ?, ?, ?, ?, ?);");
 
             prep.setInt(1, 1);
             prep.setString(2, "Cherry");
-            prep.setString(3,"sprite/e001.png");
+            prep.setString(3, "sprite/e001.png");
             prep.setDouble(4, 7.00);
+            prep.setString(5, "none");
+            prep.setString(6, "none");
             prep.addBatch();
 
-            prep.setInt(1,2);
-            prep.setString(2,"Strawberry");
-            prep.setString(3,"sprite/e002.png");
-            prep.setDouble(4,7.00);
+            prep.setInt(1, 2);
+            prep.setString(2, "Strawberry");
+            prep.setString(3, "sprite/e002.png");
+            prep.setDouble(4, 7.00);
+            prep.setString(5, "none");
+            prep.setString(6, "none");
             prep.addBatch();
 
             prep.setInt(1,3);
             prep.setString(2,"None");
             prep.setString(3,"sprite/e000.png");
             prep.setDouble(4,0.00);
+            prep.setString(5, "none");
+            prep.setString(6, "none");
             prep.addBatch();
 
 
@@ -80,7 +86,20 @@ public class ExtrasTableEditor {
                 //second - name
                 //third - image
                 //forth - price
-                extras.add(new Extra(rs.getInt(1), rs.getString(2), new VExtra(new Texture(Gdx.files.internal(rs.getString(3)))), rs.getFloat(4)));
+                com.badlogic.gdx.utils.Array<Texture> ar = new com.badlogic.gdx.utils.Array<Texture>();
+
+                Texture t1 = new Texture(Gdx.files.internal(rs.getString(3)));
+                ar.add(t1);
+                if(!rs.getString(5).equals("none")&&!rs.getString(5).isEmpty()){
+                    Texture t2 = new Texture(Gdx.files.internal(rs.getString(5)));
+                    ar.add(t2);
+                }
+
+                if(!rs.getString(6).equals("none")&&!rs.getString(6).isEmpty()){
+                    Texture t3 = new Texture(Gdx.files.internal(rs.getString(6)));
+                    ar.add(t3);
+                }
+                extras.add(new Extra(rs.getInt(1), rs.getString(2), new VExtra(ar), rs.getFloat(4)));
 
             }
             rs.close();

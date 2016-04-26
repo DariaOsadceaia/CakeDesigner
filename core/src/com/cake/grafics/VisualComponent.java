@@ -2,6 +2,7 @@ package com.cake.grafics;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
 
 import static com.cake.others.Disposition.CAKE_COORDINATES_X;
 import static com.cake.others.Disposition.CAKE_COORDINATES_Y;
@@ -12,7 +13,7 @@ import static com.cake.others.Disposition.CAKE_COORDINATES_Y;
 
 //This class and his inheritors are only for visual presentation of all Cakecomponents
 public class VisualComponent {
-    Texture image;
+    Array<Texture> image;
     Rectangle position;
     String form;
 
@@ -25,7 +26,7 @@ public class VisualComponent {
     }
 
 
-    public VisualComponent(Texture t){
+    public VisualComponent(Array<Texture> t){
 
         //image of component
         image = t;
@@ -38,7 +39,7 @@ public class VisualComponent {
     }
 
 
-    public Texture getImage(){
+    public Array<Texture> getImage(){
 
         return image;
     }
@@ -51,7 +52,7 @@ public class VisualComponent {
         position = r;
 
     }
-    public void setImage(Texture t){
+    public void setImage(Array<Texture> t){
 
         image = t;
     }
@@ -59,7 +60,8 @@ public class VisualComponent {
     public void dispose(){
 
         //release resourse from image
-        image.dispose();
+        for (int i=0;i<image.size;i++)
+        image.get(i).dispose();
     }
 
 

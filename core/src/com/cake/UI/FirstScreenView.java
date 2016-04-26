@@ -56,6 +56,7 @@ public class FirstScreenView {
     public Slider countOfCakesSlider;
 
     public Image baseImage;
+    
     public Image creamImage;
     public Image extraImage;
 
@@ -93,17 +94,20 @@ public class FirstScreenView {
 
         //load pictures for cake
         for(int i=0;i<b.size;i++) {
-            skin.add("base" + b.get(i).getId(), new NinePatch(b.get(i).getViewer().getImage(), 0, 0, 0, 0));
+            for (int k=0;k<b.get(i).getViewer().getImage().size;k++)
+            skin.add("base" + b.get(i).getId()+"_"+k, new NinePatch(b.get(i).getViewer().getImage().get(k), 0, 0, 0, 0));
         }
 
 
             for (int i = 0; i < c.size; i++) {
-                skin.add("cream" + c.get(i).getId(), new NinePatch(c.get(i).getViewer().getImage(), 0, 0, 0, 0));
+                for (int k=0;k<c.get(i).getViewer().getImage().size;k++)
+                skin.add("cream" + c.get(i).getId()+"_"+k, new NinePatch(c.get(i).getViewer().getImage().get(k), 0, 0, 0, 0));
 
             }
 
         for(int i=0;i<e.size;i++) {
-            skin.add("extra"+e.get(i).getId(),new NinePatch(e.get(i).getViewer().getImage(), 0, 0, 0, 0));
+            for (int k=0;k<e.get(i).getViewer().getImage().size;k++)
+            skin.add("extra"+e.get(i).getId()+"_"+k,new NinePatch(e.get(i).getViewer().getImage().get(k), 0, 0, 0, 0));
 
         }
 
@@ -126,7 +130,7 @@ public class FirstScreenView {
         skin.add("default", new Label.LabelStyle(font, Color.BROWN));
 
             //default TextButtonStyle.No images
-        skin.add("default", new TextButton.TextButtonStyle(skin.getDrawable("default"), skin.getDrawable("default"), skin.getDrawable("default"), font));
+        skin.add("default", new TextButton.TextButtonStyle(skin.getDrawable("dbutton"), skin.getDrawable("lbutton"), skin.getDrawable("dbutton"), font));
             //default CheckBoxStyle
         skin.add("default", new CheckBox.CheckBoxStyle(skin.getDrawable("unchecked"), skin.getDrawable("checked"), font, Color.BROWN));
             //default SliderStyle
@@ -162,7 +166,11 @@ public class FirstScreenView {
 
 
         priceLabel = new Label("Price: ", skin);
-        priceLabel.setBounds(450, 40, 140, 40);
+        priceLabel.setBounds(450, 80, 140, 30);
+
+        nextScreenButton = new TextButton("Ready",skin);
+        nextScreenButton.setBounds(450,40,140,40);
+        //nextScreenButton.addListener();
 
 
 
@@ -211,14 +219,18 @@ public class FirstScreenView {
 
             //this code fragment displays Cake
 
-        baseImage = new Image(skin.getDrawable("base"+b.get(0).getId()));
+        baseImage = new Image(skin.getDrawable("base"+b.get(0).getId()+"_"+0));
         baseImage.setBounds(180,100,300,200);
-        creamImage = new Image(skin.getDrawable("cream"+c.get(0).getId()));
+        creamImage = new Image(skin.getDrawable("cream"+c.get(0).getId()+"_"+0));
         creamImage.setBounds(180,100,300,200);
-        extraImage = new Image(skin.getDrawable("extra"+b.get(0).getId()));
+        extraImage = new Image(skin.getDrawable("extra"+b.get(0).getId()+"_"+0));
         extraImage.setBounds(180, 100, 300, 200);
 
 
+
+
+        //just add this
+        //it will not work until stage doesn't know about it
         stage.addActor(languageSelectBox);
 
         stage.addActor(baseLabel);
@@ -231,6 +243,7 @@ public class FirstScreenView {
         stage.addActor(extrasSelectBox);
 
         stage.addActor(priceLabel);
+        stage.addActor(nextScreenButton);
 
         stage.addActor(formLabel);
         stage.addActor(formSelectBox);

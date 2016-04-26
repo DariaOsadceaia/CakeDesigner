@@ -27,10 +27,16 @@ public class FirstScreenController {
     FirstScreenModel model;
     Stage stage;
 
+    public boolean toSecondScreen = false;
+
 
     public ChangeListener baseSelectBoxListener;
     public ChangeListener creamSelectBoxListener;
     public ChangeListener extraSelectBoxListener;
+
+    public ChangeListener nextScreenButtonListener;
+
+
 
 
     public FirstScreenController(){
@@ -58,7 +64,7 @@ public class FirstScreenController {
         view = new FirstScreenView(model.bases,model.creams,model.extras);
 
         stage = view.stage;
-        Gdx.input.setInputProcessor(stage);
+        //Gdx.input.setInputProcessor(stage);
         baseSelectBoxListener = new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -93,6 +99,15 @@ public class FirstScreenController {
         };
 
 
+        nextScreenButtonListener = new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                toSecondScreen = true;
+
+            }
+        };
+
+
         //extract names to SelectBoxes
 
         view.baseSelectBox.setItems(extractNamesForBases(model.bases));
@@ -104,20 +119,31 @@ public class FirstScreenController {
         view.extrasSelectBox.setItems(extractNamesForExtras(model.extras));
         view.extrasSelectBox.addListener(extraSelectBoxListener);
 
+        view.nextScreenButton.addListener(nextScreenButtonListener);
+
 
     }
 
 
     public void control(){
 
+        Gdx.input.setInputProcessor(stage);
+
         Gdx.gl.glClearColor(0.85f, 0.7f, 0.6f, 0.5f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
-        view.baseImage.setDrawable(view.skin.getDrawable("base" + model.current.getCakeBase().getId()));
-        view.creamImage.setDrawable(view.skin.getDrawable("cream" + model.current.getCakeCream().getId()));
-        view.extraImage.setDrawable(view.skin.getDrawable("extra" + model.current.getExtra().getId()));
-        view.priceLabel.setText("Price: "+model.current.calculate());
+        view.baseImage.setDrawable(view.skin.getDrawable("base" + model.current.getCakeBase().getId() + "_0"));
+        view.creamImage.setDrawable(view.skin.getDrawable("cream" + model.current.getCakeCream().getId()+"_0"));
+        view.extraImage.setDrawable(view.skin.getDrawable("extra" + model.current.getExtra().getId() + "_0"));
+        view.priceLabel.setText("Price: " + model.current.calculate());
+        model.current.setCountOfCakes((int) view.countOfCakesSlider.getValue());
+        model.current.setCountOfTiers((int) view.countOfTiers.getValue());
+        model.current.setWeight(view.weightSlider.getValue());
+
+        view.forCakeSliderLabel.setText(" "+model.current.getCountOfCakes());
+        view.forTierSliderLabel.setText(" " + model.current.getCountOfTiers());
+        view.forWeightSliderLabel.setText(" " + model.current.getWeight());
 
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
